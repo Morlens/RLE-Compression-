@@ -36,3 +36,9 @@ Enter text to Decompress:
 
 Here is the result: AAABB
 ```
+# How to run
+Go to terminal 
+```
+gcc compressor.c main.c -o rleProgram.exe
+```
+Run ```rleProgram.exe```
