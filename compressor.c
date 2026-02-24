@@ -16,11 +16,10 @@ void rleCompressor(char *input, char *result){
         if(i < length - 1 && input[i] == input[i + 1]){
             count++;
         } else {
-            pos += sprintf(result + pos, "%d%c ", count, input[i]);
+            pos += sprintf(result + pos, "%d%c", count, input[i]);
             count = 1;
         }
     }
-    result[pos] = '\0';
 }
 
 void rleDecompressor(char *input, char *result){
@@ -43,5 +42,4 @@ void rleDecompressor(char *input, char *result){
             count = 0;
         }
     }
-    result[pos] = '\0';
 }

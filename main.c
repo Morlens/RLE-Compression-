@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]){
    if(argc != 4){
-    printf("Usage: %s -c | -d input_file output_file\n", argv[0]);
+    printf("Usage: %s.exe -c | -d input_file output_file\n", argv[0]);
     return 1;
    }
 
