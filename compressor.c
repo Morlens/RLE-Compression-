@@ -26,19 +26,28 @@ void rleCompressor(char *input, char *result){
     printf("\n\n");
 }
 
-void rleDecompressor(char *input){
+void rleDecompressor(char *input, char *result){
     int count = 0;
+    int pos1 = 0;
 
     printf("\n\nHere is the result: ");
+
+    for (int i = 0; input[i]; i++) {
+        input[i] = toupper(input[i]);
+    }   
+
     for(int i = 0; input[i] != '\0'; i++){
         if(isdigit(input[i])){
             count = count * 10 + (input[i] - '0');
+        } else if(input[i] == ' '){
+            continue;
         } else {
             for(int j = 0; j < count; j++){
-                printf("%c", input[i]);
+                pos1 += sprintf(result + pos1, "%c", input[i]);
             }
             count = 0;
         }
     }
+    result[pos1] = '\0';
     printf("\n\n");
 }

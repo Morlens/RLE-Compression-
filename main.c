@@ -9,6 +9,7 @@ void menu_options(){
     printf("1. Compress\n");
     printf("2. Decompress\n");
     printf("3. Compress (file-based)\n");
+    printf("4. Decompress (file-based)\n");
     printf("5. Exit\n");
     printf("Enter your choice: ");
 
@@ -18,6 +19,9 @@ int main(){
     int choice;
     char input[256];
     char choiceStr[10];
+    int c;
+    int ch = '\0';
+    int index = 0;
 
     while(1){
         menu_options();
@@ -39,15 +43,14 @@ int main(){
                 break;
 
             case 2:
+            char decompressedText[256];
                 printf("Enter text to Decompress: ");
                 fgets(input, sizeof(input), stdin);
                 input[strcspn(input, "\n")] = 0;
 
-                for (int i = 0; input[i]; i++) {
-                    input[i] = toupper(input[i]);
-                }
+                rleDecompressor(input, decompressedText);
+                printf("Decompressed Text: %s\n", decompressedText);
 
-                rleDecompressor(input);
                 break;
             case 3:
                 char filename[256]; // input file name
@@ -58,7 +61,6 @@ int main(){
                 printf("\nEnter input file name: ");
                 scanf("%255s", filename);
 
-                int c;
                 while ((c = getchar()) != '\n' && c != EOF);
 
                 FILE *file = fopen(filename, "r");
@@ -67,11 +69,7 @@ int main(){
                     break;
                 }
 
-            
-                int ch = '\0';
-                int index = 0;
-                   
-                while((ch = fgetc(file)) != EOF && index < 256){
+                    while((ch = fgetc(file)) != EOF && index < 256){
                     buffer[index] = ch;
                     index++;
                 }
@@ -101,6 +99,36 @@ int main(){
 
                 printf("\nResult succesfully written to %s.\n", outputFilename);
 
+                break;
+
+            case 4:
+                char filename1[256];
+                char buffer1[256];
+                char decompressed[256];
+
+                printf("\nEnter file name to decompress: ");
+                scanf("%255s", filename1);
+
+                while((c = getchar()) != '\n' && c != EOF);
+
+                FILE *decom = fopen(filename1, "r");
+                if(decom == NULL){
+                    perror("File error.");
+                }
+
+                while((ch = fgetc(decom)) != EOF && index < 256){
+                    buffer1[index] = ch;
+                    index++;
+                }
+
+                buffer1[index] = '\0';
+
+                fclose(decom);
+
+                rleDecompressor(buffer1, decompressed);
+
+                printf("%s\n", decompressed);
+            
                 break;
 
             case 5:

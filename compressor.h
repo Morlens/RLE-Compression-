@@ -2,6 +2,6 @@
 #define COMPRESSOR_H
 
 void rleCompressor(char *input, char *result);
-void rleDecompressor(char *input);
+void rleDecompressor(char *input, char *results);
 
 #endif
