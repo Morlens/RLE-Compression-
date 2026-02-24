@@ -8,8 +8,6 @@ void rleCompressor(char *input, char *result){
     int count = 1;
     int pos = 0;
 
-    printf("\n\nHere is the result: ");
-
     for (int i = 0; input[i]; i++) {
             input[i] = toupper(input[i]);
         }
@@ -23,14 +21,11 @@ void rleCompressor(char *input, char *result){
         }
     }
     result[pos] = '\0';
-    printf("\n\n");
 }
 
 void rleDecompressor(char *input, char *result){
     int count = 0;
-    int pos1 = 0;
-
-    printf("\n\nHere is the result: ");
+    int pos = 0;
 
     for (int i = 0; input[i]; i++) {
         input[i] = toupper(input[i]);
@@ -43,11 +38,10 @@ void rleDecompressor(char *input, char *result){
             continue;
         } else {
             for(int j = 0; j < count; j++){
-                pos1 += sprintf(result + pos1, "%c", input[i]);
-            }
+                result[pos++] = input[i];
+            }   
             count = 0;
         }
     }
-    result[pos1] = '\0';
-    printf("\n\n");
+    result[pos] = '\0';
 }
