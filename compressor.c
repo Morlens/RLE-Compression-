@@ -22,7 +22,6 @@ void rleCompressor(char *input, char *result){
             count = 1;
         }
     }
-    result[pos] = '\0';
     printf("\n\n");
 }
 
@@ -48,6 +47,5 @@ void rleDecompressor(char *input, char *result){
             count = 0;
         }
     }
-    result[pos1] = '\0';
     printf("\n\n");
 }
